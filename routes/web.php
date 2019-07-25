@@ -27,4 +27,12 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //ユーザ機能
 Route::group(['middleware' => ['auth']], function (){
     Route::resource('users','UsersController', ['only' => 'show']);
+
+
+    //画像アップロード
+    Route::post('upload', 'PostsController@upload')->name('upload');
+    Route::delete('delete/{id}', 'PostsController@destroy')->name('delete');
+    
+    // コメント機能
+    Route::resource('comments','CommentsController', ['only' => ['show','destroy','index','create']]);
 });
