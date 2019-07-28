@@ -34,5 +34,6 @@ Route::group(['middleware' => ['auth']], function (){
     Route::delete('delete/{id}', 'PostsController@destroy')->name('delete');
     
     // コメント機能
-    Route::resource('comments','CommentsController', ['only' => ['show','destroy','index','create']]);
+    Route::resource('comments','CommentsController', ['only' => ['show','destroy','index']]);
+    Route::post('comments/{id}','CommentsController@store')->name('store');
 });

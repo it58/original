@@ -20,7 +20,7 @@ class PostsController extends Controller
             Post::create([
                 'image_file_name' => $path,
                 'user_id' => auth()->id(),
-                'image_title' => 'test'
+                'image_title' => $request->comment
             ]);
        
             return redirect()->back();

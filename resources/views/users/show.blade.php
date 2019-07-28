@@ -17,6 +17,10 @@
                     <div class="form-group">
                         {!! Form::label('file', '画像アップロード', ['class' => 'control-label']) !!}
                         {!! Form::file('file') !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('text', '投稿コメント', ['class' => 'control-label']) !!}
+                        {!! Form::text('comment') !!}
                     </div>   
                     <div class="form-group">
                         {!! Form::submit('アップロード', ['class' => 'btn btn-default']) !!}
@@ -32,11 +36,11 @@
                 <!--image_file_nameカラムに保存されている画像のパスを用いて画像を一覧表示-->
                 <div class="row">
                     <div class="col-sm-6">
-                        <a href=""><img src= {{ Storage::disk('s3')->url($post->image_file_name) }} alt="" width="300px" height="300px"></a>
+                        <a href="{{ route('comments.show', ['id' => $post->id]) }}"><img src= {{ Storage::disk('s3')->url($post->image_file_name) }} alt="" width="300px" height="300px"></a>
                     </div>
                     <div class="col-sm-6">
                         <p>{{ $post->image_title }}</p>
-                        <p>{{ $post->image_file_name }}</p>
+                        <!--<p>{{ $post->image_file_name }}</p>-->
                     </div>
                 </div>
                 @if (Auth::id() == $post->user_id)
