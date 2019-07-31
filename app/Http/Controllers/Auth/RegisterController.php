@@ -73,5 +73,8 @@ class RegisterController extends Controller
         ]);
     }
     
-    
+     protected function registered(\Illuminate\Http\Request $request, $user)
+    {
+        $this->redirectTo = '/users/'.$user->id;
+    }
 }
