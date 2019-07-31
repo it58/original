@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostsController@index');
+
 
 // ユーザ登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -36,4 +35,10 @@ Route::group(['middleware' => ['auth']], function (){
     // コメント機能
     Route::resource('comments','CommentsController', ['only' => ['show','destroy','index']]);
     Route::post('comments/{id}','CommentsController@store')->name('store');
+    
+    // 参考になった機能
+    Route::group(['prefix' => 'references/{id}'], function () {
+        Route::post('add_reference', 'ReferenceController@store')->name('reference.store');
+        Route::get('get_reference', 'ReferenceController@show')->name('reference.show');
+    });
 });

@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="/">トップページ</a>
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-                <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
+                <li>{!! link_to_route('logout.get', 'ログアウト',null, ['class' => 'navbar-brand']) !!}</li>
             </ul>
         </nav>
     </header>

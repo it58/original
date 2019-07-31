@@ -42,6 +42,16 @@ class PostsController extends Controller
         return redirect()->back();
     }
     
+    public function index(){
+        $posts = \App\Post::orderBy('id','desc')->get();
+        
+        $data = [
+            'posts' => $posts
+        ];
+        
+        return view('welcome',$data);
+    }
+    
 }
 
 

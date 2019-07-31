@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-center">
+    <div class="text-center mt-4">
         <h1>ログイン画面</h1>
     </div>
 

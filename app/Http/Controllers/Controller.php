@@ -10,4 +10,14 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
+    public function counts($comment){
+        $referencedUsersCount = $comment->referencedUsers()->count();
+        // dd($referencedUsers);
+        
+        return [
+            'referencedUsersCount' => $referencedUsersCount
+            ];
+         
+    }
 }

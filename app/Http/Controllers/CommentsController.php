@@ -25,7 +25,6 @@ class CommentsController extends Controller
         return view('comments.show', [
             'post' => $post, 
             'users' => $users,
-            // 'comments' => $comments, 
         ]);
     }
     

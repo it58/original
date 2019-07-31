@@ -5,6 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <title>将棋</title>
+        
+        <style>
+            .backgray {
+                width:500px;
+                border: 1px solid #000;
+                padding: 1em;
+                text-align: center;
+                background-color: #dedede;
+            }
+            .white {
+                color:white;
+            }
+        </style>
     </head>
     <body>
         

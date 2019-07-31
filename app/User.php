@@ -36,4 +36,25 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+    
+    // 参考にしたコメント一覧取得
+    public function referencesComments()
+    {
+        return $this->belongsToMany(Comment::class,'users_comments','user_id','comment_id')->withTimestamps();
+    }
+    
+    // あるコメントを参考にする。すでに参考にしているなら何もしない
+    public function references($commentId){
+        if($this->is_reference($commentId)){
+            return false;
+        }else{
+            $this->referencesComments()->attach($commentId);
+            return true;
+        }
+    }
+    
+    // 既にコメントが参考にされたか確認する
+    public function is_reference($commentId){
+        return $this->referencesComments()->where('comment_id', $commentId )->exists();
+    }
 }
