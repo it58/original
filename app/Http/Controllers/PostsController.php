@@ -6,17 +6,25 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use App\Post;
 use Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {
      public function upload(Request $request){
         
-        if ($request->file('file')->isValid([])) {
-           
-            $file = $request->file('file');
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|max:10240|mimes:jpeg,gif,png',
+                'comment' => 'required|max:191',
+            ]);
             
+            if ($validator->fails())
+                {
+                    return back()->withInput()->withErrors($validator);
+                }
+                
+            $file = $request->file('file');
             $path = Storage::disk('s3')->putFile('/', $file, 'public');
-
+    
             Post::create([
                 'image_file_name' => $path,
                 'user_id' => auth()->id(),
@@ -24,12 +32,12 @@ class PostsController extends Controller
             ]);
        
             return redirect()->back();
-        } else {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
-        }
+        // } else {
+        //     return redirect()
+        //         ->back()
+        //         ->withInput()
+        //         ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
+        // }
     }
     
     public function destroy($id){
@@ -44,9 +52,11 @@ class PostsController extends Controller
     
     public function index(){
         $posts = \App\Post::orderBy('id','desc')->get();
+        $users = \App\User::orderBy('id','desc')->get();
         
         $data = [
-            'posts' => $posts
+            'posts' => $posts,
+            'users' => $users
         ];
         
         return view('welcome',$data);

@@ -2,18 +2,39 @@
 
 @section('content')
     @if (Auth::check())
-        <h1 class="mb-4 p-2 text-center border">最近の投稿</h1>
-        <!--全ユーザの投稿を表示-->
-        @foreach($posts as $post)
-            <div class="row mt-4">
-                <div class="col-sm-4">
-                    <a href="{{ route('comments.show', ['id' => $post->id]) }}"><img src= {{ Storage::disk('s3')->url($post->image_file_name) }} alt="" width="300px" height="300px"></a>
-                </div>
-                <div class="col-sm-8">
-                    <p>{{ 'タイトル：'.$post->image_title }}</p>
+        <div class="container">
+            <div class="row">
+                <aside class="col-sm-2">
+                    <!--全ユーザを表示-->
+                    <h6 class="mb-4 p-2 text-center border">ユーザ一覧</h6>
+                    @foreach($users as $user)
+                        <li class="media mb-3">
+                            <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
+                            <div class="media-body">
+                                <div>
+                                    <a href="{{ route('users.show', ['id' => $user->id]) }}"><p>{{ $user->name }} </p></a>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                </aside>
+                <div class="col-sm-10">
+                    <h2 class="mb-4 p-2 text-center border">最近の投稿</h2>
+                    <!--全ユーザの投稿を表示-->
+                    @foreach($posts as $post)
+                        <div class="row mt-4">
+                            <div class="col-sm-4">
+                                <a href="{{ route('comments.show', ['id' => $post->id]) }}"><img src= {{ Storage::disk('s3')->url($post->image_file_name) }} alt="" width="300px" height="300px"></a>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>{{ 'タイトル：'.$post->image_title }}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-        @endforeach
+        </div>
+        
     @else
         
     <div class="text-center mt-4">

@@ -39,7 +39,7 @@ class CommentsController extends Controller
         $this->validate($request,[
             'comment' => 'required|max:191',
         ]);
-        //  dd($request->user);
+
         $comment = new Comment;
         $comment->comment = $request->comment;
         $comment->user_id = auth()->id();
