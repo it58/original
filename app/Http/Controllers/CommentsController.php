@@ -13,11 +13,11 @@ class CommentsController extends Controller
         
     }
     
-    // コメント画面に渡す変数 postのインスタンス　そのpostに対するコメント コメントしたユーザ　
-    // 引数$idは投稿のid
+    // コメント画面に渡す変数 :postのインスタンス　：そのpostに対するコメント ：コメントしたユーザ　
+    // 引数$idは投稿id
     public function show($id){
         $post = Post::find($id);
-        $comments = $post->comments()->get()->pluck('comment');
+        // $comments = $post->comments()->get()->pluck('comment');
         $userIds = $post->comments()->get()->pluck('user_id');
        
         $users= User::findMany($userIds);
