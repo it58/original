@@ -11,8 +11,8 @@ class UsersController extends Controller
     // ユーザのインスタンスとそのユーザのpostsをviewに渡す
     public function show($id){
         $user = User::find($id);
-        $posts = $user->posts;
-
+        $posts = $user->posts()->orderBy('created_at','desc')->paginate(6);
+        // dd($posts);
         return view ('users.show',[
             'user' => $user,
             'posts' => $posts,

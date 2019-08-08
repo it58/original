@@ -35,23 +35,29 @@
         <div class="col-sm-8">
             <h1 class="border text-center p-2">投稿一覧</h1>
             <!--ユーザ個人のpostsを表示-->
-            @foreach($posts as $post)
-                
-                <!--image_file_nameカラムに保存されている画像のパスを用いて画像を一覧表示-->
-                <div class="row my-4">
-                    <div class="col-sm-6">
-                        <a href="{{ route('comments.show', ['id' => $post->id]) }}"><img src= {{ Storage::disk('s3')->url($post->image_file_name) }} alt="" width="300px" height="300px"></a>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>{{ 'タイトル：'.$post->image_title }}</p>
-                    </div>
+            <div class="container-fluid">
+                <div class="row justify-content-between ">
+                    @foreach($posts as $post)
+                        
+                        <!--image_file_nameカラムに保存されている画像のパスを用いて画像を一覧表示-->
+                        <div class="col-sm-4">
+                            <div class="card-header">
+                                <a href="{{ route('comments.show', ['id' => $post->id]) }}"><img src= {{ Storage::disk('s3')->url($post->image_file_name) }} alt="" width=100% height=100%></a>
+                            </div>
+                            <div class="card-body text-left px-0">
+                                <p class="card-title">{{ $post->image_title }}</p>
+                                @if (Auth::id() == $post->user_id)
+                                    {!! Form::open(['route' => ['delete', $post->id], 'method' => 'delete']) !!}
+                                            {!! Form::submit('削除', ['class' => 'btn btn-danger card-text']) !!}
+                                    {!! Form::close() !!}
+                                @endif
+                            </div>
+                        </div>
+                        
+                    @endforeach
                 </div>
-                @if (Auth::id() == $post->user_id)
-                    {!! Form::open(['route' => ['delete', $post->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-                @endif
-            @endforeach
+            </div>
+            {{ $posts->render('pagination::bootstrap-4') }}
         </div>
     </div>
 @endsection

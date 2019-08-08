@@ -51,8 +51,8 @@ class PostsController extends Controller
     }
     
     public function index(){
-        $posts = \App\Post::orderBy('id','desc')->get();
-        $users = \App\User::orderBy('id','desc')->get();
+        $posts = \App\Post::orderBy('created_at','desc')->paginate(6);
+        $users = \App\User::orderBy('created_at','desc')->paginate(6);
         
         $data = [
             'posts' => $posts,

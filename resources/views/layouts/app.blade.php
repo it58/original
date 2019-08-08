@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}">
         <title>将棋</title>
         
         <style>
@@ -14,8 +15,9 @@
                 text-align: center;
                 background-color: #dedede;
             }
-            .white {
-                color:white;
+            
+            .back-ground{
+                back-ground-color:silver;
             }
         </style>
     </head>
