@@ -6,18 +6,19 @@
                 <aside class="col-sm-2">
                     <!--全ユーザを表示-->
                     <h6 class="mb-4 p-2 text-center border">ユーザ一覧</h6>
-                    @foreach($users as $user)
-                        @if($user->id != 1)
-                            <li class="media mb-3">
-                                <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
-                                <div class="media-body">
-                                    <div>
-                                        <a href="{{ route('users.show', ['id' => $user->id]) }}"><p>{{ $user->name }} </p></a>
+                        @foreach($users as $user)
+                            @if($user->id != 1)
+                                <li class="media mb-3">
+                                    <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
+                                    <div class="media-body">
+                                        <div>
+                                            <a href="{{ route('users.show', ['id' => $user->id]) }}"><p>{{ $user->name }} </p></a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        @endif
-                    @endforeach
+                                </li>
+                            @endif
+                        @endforeach
+                    {{ $users->render('pagination::bootstrap-4') }}
                 </aside>
                 <div class="col-sm-10">
                     <h2 class="mb-4 p-2 text-center border brown">最近の投稿</h2>

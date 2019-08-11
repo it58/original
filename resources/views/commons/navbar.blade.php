@@ -4,6 +4,7 @@
         <ul class="navbar-nav mr-auto"></ul>
         @if(Auth::check())
             <ul class="navbar-nav">
+                <li>{!! link_to_route('search', 'ユーザ検索',null, ['class' => 'navbar-brand']) !!}</li>
                 <li>{!! link_to_route('logout.get', 'ログアウト',null, ['class' => 'navbar-brand']) !!}</li>
             </ul>
         @else

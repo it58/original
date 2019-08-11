@@ -34,18 +34,18 @@ Route::get('show.reference/{id}','CommentsController@show_reference')->name('sho
 Route::resource('users','UsersController', ['only' => 'show']);
 
 // ユーザ検索機能
-Route::get('Search','SearchController@index')->name('search');
+Route::get('Search','SearchController@getIndex')->name('search');
 Route::post('Search','SearchController@index')->name('search.post');
 
 Route::group(['middleware' => ['auth']], function (){
-    //画像およびタイトル投稿(ログイン後)
+    //画像投稿(ログイン後)
     Route::post('upload', 'PostsController@upload')->name('upload');
     Route::delete('delete/{id}', 'PostsController@destroy')->name('delete');
     
-    // 参考になった機能
+    // 参考になった機能(ログイン後)
     Route::group(['prefix' => 'references/{id}'], function () {
         Route::post('add_reference', 'ReferenceController@store')->name('reference.store');
         Route::get('get_reference', 'ReferenceController@show')->name('reference.show');
-        
+        // postしてるのにルーティングがgetになってる
     });
 });
