@@ -34,8 +34,8 @@ Route::get('show.reference/{id}','CommentsController@show_reference')->name('sho
 Route::resource('users','UsersController', ['only' => 'show']);
 
 // ユーザ検索機能
-Route::get('Search','SearchController@getIndex')->name('search');
-Route::post('Search','SearchController@index')->name('search.post');
+Route::get('Search','SearchController@index')->name('search');
+// Route::post('Search','SearchController@index')->name('search.post');
 
 Route::group(['middleware' => ['auth']], function (){
     //画像投稿(ログイン後)

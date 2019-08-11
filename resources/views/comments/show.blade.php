@@ -8,7 +8,7 @@
                     <img src= {{ Storage::disk('s3')->url($post->image_file_name) }} alt="" width=100%>
                 </div>
                 <div class = "mt-4">
-                    <a href="{{ route('users.show',['id' => $post->user->id]) }}"><p> 投稿者：{{ $post->user->name }} </p></a>
+                    <a href="{{ route('users.show',['id' => $post->user->id]) }}"><span> 投稿者：{{ $post->user->name }} </span></a>
                 </div>
                 <div class = "mt-4">
                     <p>タイトル：{{ $post->image_title }}</p>
@@ -35,7 +35,7 @@
                        <div class="border mt-2">
                             <div>
                                 @if($comment->user->id  != 1)
-                                    <a href="{{ route('users.show', ['id' => $comment->user->id]) }}"><p>投稿： {{ $comment->user->name }} </p></a>
+                                    <a href="{{ route('users.show', ['id' => $comment->user->id]) }}"><span>投稿： {{ $comment->user->name }} </span></a>
                                 @else
                                     <p>投稿：ゲスト </p> 
                                 @endif

@@ -8,6 +8,7 @@ use App\User;
 class SearchController extends Controller
 {
     public function getIndex(){
+   
         return view('users.search');
     }
     
@@ -33,7 +34,7 @@ class SearchController extends Controller
             $query->where('name', 'like', '%'.$search3.'%')->get();
         }
         
-        $data = $query->paginate(3);
+        $data = $query->paginate(10);
      
         return view('users.search',[
             'data' => $data
