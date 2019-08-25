@@ -10,4 +10,9 @@ class ReferenceController extends Controller
         \Auth::user()->references($id);
         return back();
     }
+    
+    public function destroy(Request $request ,$id){
+        \Auth::user()->unreferences($id);
+        return back();
+    }
 }

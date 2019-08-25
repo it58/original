@@ -2,4 +2,86 @@
 
 .brown{
     background-color:#ddd;
+    border:1px;
 }
+
+
+.cover{
+     width:100%;
+     height:100%;
+}
+
+img{
+  background-color: black;
+  width: 350; height: 350;
+  object-fit: contain;
+}
+
+.button {
+  width: 280px;
+  background-color: #aaaaaa;
+  border-radius: 3px;
+  box-shadow: 0 3px 0 rgba(136,136,136,1);
+  color: #ffffff;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  margin: 10px auto;
+  padding: 10px 0;
+}
+.button:hover {
+  opacity:0.5;
+}
+
+.balloon-left {
+  color:white;
+  position: relative;
+  border-radius:0.25em;
+  display: inline-block;
+  padding: 0 15px;
+  width: auto;
+  min-width: 50px;
+  height: 56px;
+  line-height: 45px;
+  text-align: center;
+  vertical-align: middle;
+  background: #007bff;
+  border: 3px solid #007bff;
+  z-index: 0;
+}
+
+/*四角要素の前に三角を挿入する*/
+.balloon-left:before {
+  border-style: solid;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #007bff transparent transparent;
+  content: "";
+  position: absolute;
+  top: 50%; left: -8px;
+  margin-top: -9px;
+  display: block;
+  width: 0px;
+  height: 0px;
+  z-index: 0;
+}
+
+.inline{
+  display:inline-block;
+
+}
+
+
+/*@media (min-width: 768px) {*/
+  /* ウインドウ幅768px以上の時に適用されるスタイル */
+/*  body {*/
+/*    background-color: #0f0;*/
+/*  }*/
+/*}*/
+
+/*@media (min-width: 992px) {*/
+  /* ウインドウ幅992px以上の時に適用されるスタイル */
+/*  body {*/
+/*    background-color: #00f;*/
+/*  }*/

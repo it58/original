@@ -3,14 +3,12 @@
 @section('content')
     <div class="row">
         <aside class="col-sm-4">
-            <div>
-                <img class="rounded img-fluid" src="{{ Gravatar::src($user->email, 500) }}" alt="">
-            </div>
-            <div>
-                <p class="border mt-4">ユーザ名：{{ $user->name }}</p>
-                <p class="border mt-4">棋力：{{ $user->strength }}</p>
-                <p class="border mt-4">好きな戦法：{{ $user->tactics }}</p>
-            </div>
+            @include('users.information',['user' =>$user])
+            
+            <ul class="nav nav-tabs nav-justified">
+                <li class="nav-item"><a href="#" class="nav-link">フォロー <span class="badge badge-primary">1</span></a></li>
+                <li class="nav-item"><a href="#" class="nav-link">フォロワー <span class="badge badge-primary">2</span></a></li>
+            </ul>
             
             <div>
             @if(Auth::id() == $user->id )
@@ -23,41 +21,15 @@
                         {!! Form::label('textarea', '投稿コメント', ['class' => 'control-label']) !!}
                         {!! Form::textarea('comment',null,['class' => 'form-control']) !!}
                     </div>   
-                    <div class="form-group">
-                        {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
+                    <div class="form-group text-center">
+                        {!! Form::submit('投稿', ['class' => 'btn btn-primary my-2']) !!}
                     </div>
                 {!! Form::close() !!}
             @endif
             </div>
         </aside>
-      
-        
         <div class="col-sm-8">
-            <h1 class="border text-center p-2">投稿一覧</h1>
-            <!--ユーザ個人のpostsを表示-->
-            <div class="container-fluid">
-                <div class="row justify-content-between ">
-                    @foreach($posts as $post)
-                        
-                        <!--image_file_nameカラムに保存されている画像のパスを用いて画像を一覧表示-->
-                        <div class="col-sm-4">
-                            <div class="card-header">
-                                <a href="{{ route('comments.show', ['id' => $post->id]) }}"><img src= {{ Storage::disk('s3')->url($post->image_file_name) }} alt="" width=100% height=100%></a>
-                            </div>
-                            <div class="card-body text-left px-0">
-                                <p class="card-title">{{ $post->image_title }}</p>
-                                @if (Auth::id() == $post->user_id)
-                                    {!! Form::open(['route' => ['delete', $post->id], 'method' => 'delete']) !!}
-                                            {!! Form::submit('削除', ['class' => 'btn btn-danger card-text']) !!}
-                                    {!! Form::close() !!}
-                                @endif
-                            </div>
-                        </div>
-                        
-                    @endforeach
-                </div>
-            </div>
-            {{ $posts->render('pagination::bootstrap-4') }}
+             @include('users.posts',['posts' => $posts])
         </div>
     </div>
 @endsection

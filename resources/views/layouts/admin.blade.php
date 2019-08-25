@@ -1,6 +1,6 @@
-<!doctype html>
-<html lang="ja">
-    <head>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -8,12 +8,16 @@
         <title>将棋</title>
         
         <style>
-            .back {
+            body{
+                background-color: #aaa;
+            }
+            
+            .backgray {
                 width:500px;
                 border: 1px solid #000;
                 padding: 1em;
                 text-align: center;
-                background-color: red;
+                background-color: #dedede;
             }
             
             .back-ground{
@@ -23,17 +27,12 @@
     </head>
     <body>
         
-        @include('commons.navbar')
+        @include('admin.admin_navbar')
         <div class="container">
             @include('commons.error_messages')
             
             @yield('content')
         </div>
-        <script type = "text/javascript">
-            document.getElementById("text-button").onclick = function() {
-            document.getElementById("text").innerHTML = "クリックされた！";
-            };
-        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>

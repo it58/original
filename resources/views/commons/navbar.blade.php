@@ -1,5 +1,5 @@
 <header class="mb-4">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark"> 
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #eee;">
         <a class="navbar-brand" href="/">トップページ</a>
         <ul class="navbar-nav mr-auto"></ul>
         <ul class="navbar-nav navbar-light">

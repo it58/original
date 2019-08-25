@@ -48,6 +48,12 @@ class CommentsController extends Controller
     }
     
     public function destroy($id){
+        $comment = \App\Comment::find($id);
+        if(\Auth::id() === $comment->user_id){
+            $comment->delete();
+        } 
+        
+        return redirect()->back();
     }
     
     // 投稿に対するコメントを保存する。

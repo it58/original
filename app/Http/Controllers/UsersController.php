@@ -18,4 +18,39 @@ class UsersController extends Controller
             'posts' => $posts,
         ]);
     }
+    
+    public function edit($id)
+    {
+        $user=User::find($id);
+        
+        return view('users.edit',[
+            'user' => $user
+        ]);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->strength = $request->strength;
+        $user->tactics = $request->tactics;
+        $user->password = $request->password;
+        $user->save();
+
+        return redirect('/users/'.$user->id);
+    }
+    
+    // ユーザをフォローする
+    public function store(Request $request,$id)
+    {
+        \Auth::user()->follow($id);
+        return back();
+    }
+    // ユーザをアンフォローする
+    public function destroy(Request $request,$id)
+    {
+        \Auth::user()->unfollow($id);
+        return back();
+    }
 }

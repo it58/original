@@ -2,26 +2,20 @@
 
 @section('content')
     
-
     <div class="row">
         <div class="col-sm-4">
             <div class="text-center my-4">
-                <h3>ユーザ検索</h3>
+                <h3 class="brown border p-2">ユーザ検索</h3>
             </div>
             {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
                 <div class="form-group">
-                    
-                            {!! Form::label('text', 'ユーザ名:') !!}
-                        
-                            {!! Form::text('name' ,'', ['class' => 'form-control', 'placeholder' => '指定なし'] ) !!}
-                       
+                    {!! Form::label('text', 'ユーザ名:') !!}
+                    {!! Form::text('name' ,'', ['class' => 'form-control', 'placeholder' => '指定なし'] ) !!}
                 </div>
-                
                 <div class="form-group">
                     {!! Form::label('strength', '棋力:') !!}
                     {!! Form::select('strength', ['指定なし' => '指定なし'] + Config::get('strength.kiryoku') ,'指定なし') !!}
                 </div>
-                
                 <div class="form-group">
                     {!! Form::label('tactics', '好きな戦法:') !!}
                     {!! Form::select('tactics', ['指定なし' => '指定なし'] + Config::get('tactics.senpou') , '指定なし') !!}
@@ -31,36 +25,40 @@
         </div>
         <div class="col-sm-8">
             <div class="text-center my-4">
-                <h3>ユーザ一覧</h3>
+                <h3 class="brown p-2">ユーザ一覧</h3>
             </div>
             
             <div class="container">
-                <div class="row  border-bottom text-center">
-                    <div class="col-sm-4">
-                        <p>ユーザ名</p>
-                    </div>
-                    <div class="col-sm-4">
-                        <p>棋力</p>
-                    </div>
-                    <div class="col-sm-4">
-                        <p>好きな戦法</p>
-                    </div>
-                </div>
                 <!--検索ボタンが押された時に実行-->
                 @if(!empty($data))
-                    @foreach($data as $item)
-                        <div class="row py-2 border-bottom text-center">
+                    <div class="my-2 p-0">
+                        <div class="row  border-bottom text-center">
                             <div class="col-sm-4">
-                                <a href="{{ route('users.show', ['id' => $item->id]) }}">{{ $item->name }}</a>
+                                <p>ユーザ名</p>
                             </div>
                             <div class="col-sm-4">
-                                {{ $item->strength }}
+                                <p>棋力</p>
                             </div>
                             <div class="col-sm-4">
-                                {{ $item->tactics }}
+                                <p>好きな戦法</p>
                             </div>
                         </div>
-                    @endforeach
+                        @foreach($data as $item)
+                            @if($item->name != 'guest')
+                                <div class="row py-2 border-bottom text-center">
+                                    <div class="col-sm-4">
+                                        <a href="{{ route('users.show', ['id' => $item->id]) }}">{{ $item->name }}</a>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{ $item->strength }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{ $item->tactics }}
+                                    </div>
+                                </div>
+                           @endif
+                        @endforeach
+                    </div>
                     {{ $data->appends(request()->input())->render('pagination::bootstrap-4') }}
                 @endif
             </div>

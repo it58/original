@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="text-center mt-4">
@@ -8,8 +8,7 @@
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
 
-            {!! Form::open(['route' => 'login.post']) !!}
-            {{ csrf_field() }}
+            {!! Form::open(['route' => 'admin.login']) !!}
                 <div class="form-group">
                     {!! Form::label('email', 'メールアドレス') !!}
                     {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}

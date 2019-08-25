@@ -31,7 +31,7 @@ Route::get('show.reference/{id}','CommentsController@show_reference')->name('sho
 
 
 //ユーザ機能
-Route::resource('users','UsersController', ['only' => 'show']);
+Route::resource('users','UsersController', ['only' => ['show','update','edit']]);
 
 // ユーザ検索機能
 Route::get('Search','SearchController@index')->name('search');
@@ -45,7 +45,39 @@ Route::group(['middleware' => ['auth']], function (){
     // 参考になった機能(ログイン後)
     Route::group(['prefix' => 'references/{id}'], function () {
         Route::post('add_reference', 'ReferenceController@store')->name('reference.store');
+        Route::delete('delete_reference', 'ReferenceController@destroy')->name('reference.destroy');
         Route::get('get_reference', 'ReferenceController@show')->name('reference.show');
-        // postしてるのにルーティングがgetになってる
+    });
+    
+    // フォロー機能(ログイン後)
+    Route::group(['prefix' => 'user/{id}'], function () {
+        Route::post('follow', 'UsersController@store')->name('user.follow');
+        Route::delete('unfollow', 'UsersController@destroy')->name('user.unfollow');
+    });
+});
+
+  
+Route::group(['prefix' => 'admin'], function(){
+
+
+//login
+    Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'Admin\Auth\LoginController@login')->name('admin.login');
+    
+//register
+    Route::get('register', 'Admin\Auth\RegisterController@showRegisterForm')->name('admin.register');
+    Route::post('register', 'Admin\Auth\RegisterController@register')->name('admin.register');
+    
+    Route::group(['middleware' => ['auth:admin']], function (){
+//home
+        Route::get('home', 'Admin\HomeController@index')->name('admin.home');
+//logout
+        Route::get('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
+//search
+        Route::get('Search','Admin\SearchController@index')->name('admin.search');
+//ユーザ詳細    
+        Route::get('users/{id}','Admin\UsersController@show')->name('admin.users.show');
+// ユーザの投稿削除
+        Route::delete('delete/{id}', 'Admin\PostsController@destroy')->name('admin.delete');
     });
 });
