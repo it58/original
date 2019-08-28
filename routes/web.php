@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', 'PostsController@index');
+Route::get('/', function(){
+    return view('top');
+});
+
+Route::get('welcome', 'PostsController@index')->name('welcome');
 
 
 // ユーザ登録
@@ -28,16 +32,19 @@ Route::resource('comments','CommentsController', ['only' => ['show','destroy']])
 Route::post('comments/{id}','CommentsController@store')->name('store');
 Route::get('show.reference/{id}','CommentsController@show_reference')->name('show.reference');
 
-
-
-//ユーザ機能
-Route::resource('users','UsersController', ['only' => ['show','update','edit']]);
+//ユーザ詳細表示機能
+Route::get('users/{id}','UsersController@show')->name('users.show');
+// Route::post('icon.upload/{id}', 'UsersController@upload')->name('icon.upload');
 
 // ユーザ検索機能
 Route::get('Search','SearchController@index')->name('search');
 // Route::post('Search','SearchController@index')->name('search.post');
 
+// ログイン後機能
 Route::group(['middleware' => ['auth']], function (){
+    
+    //ユーザ情報編集機能(ログイン後)
+    Route::resource('users','UsersController', ['only' => ['update','edit']]);
     //画像投稿(ログイン後)
     Route::post('upload', 'PostsController@upload')->name('upload');
     Route::delete('delete/{id}', 'PostsController@destroy')->name('delete');
@@ -53,10 +60,12 @@ Route::group(['middleware' => ['auth']], function (){
     Route::group(['prefix' => 'user/{id}'], function () {
         Route::post('follow', 'UsersController@store')->name('user.follow');
         Route::delete('unfollow', 'UsersController@destroy')->name('user.unfollow');
+        Route::get('followings', 'UsersController@followings')->name('users.following');
+        Route::get('followers', 'UsersController@followers')->name('users.follower');
     });
 });
 
-  
+// 管理者機能
 Route::group(['prefix' => 'admin'], function(){
 
 

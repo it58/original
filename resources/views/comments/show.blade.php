@@ -38,9 +38,10 @@
                             <div class="card-header m-0 p-0 pl-1">
                                 @if($comment->user->id  != 1)
                                     <a href="{{ route('users.show', ['id' => $comment->user->id]) }}"><span>投稿： {{ $comment->user->name }} </span></a>
-                                    <span>投稿日時： {{ $comment->user->created_at }} </span>
+                                    <span>投稿日時： {{ $comment->created_at }} </span>
                                 @else
-                                    <p>投稿：ゲスト </p> 
+                                    <span>投稿：ゲスト </span> 
+                                    <span>投稿日時： {{ $comment->created_at }} </span>
                                 @endif
                             </div>
                             <div class="card-body">

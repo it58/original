@@ -25,7 +25,17 @@
             </div>
         </aside>
         <div class="col-sm-8">
-             @include('users.posts',['posts' => $posts])
+            <!--フォローされているユーザを一覧表示-->
+            @foreach($followers as $follower)
+                <h1>フォロワー一覧</h1>
+                <li class="media">
+                        <img class="mr-2 rounded" src="{{ Gravatar::src($follower->email, 50) }}" alt="">
+                        <div class="media-body">
+                            <p>{!! link_to_route('users.show', $follower->name ,['id' => $follower->id]) !!}</p>
+                        </div>
+                    </div>
+                </li>
+             @endforeach
         </div>
     </div>
 @endsection

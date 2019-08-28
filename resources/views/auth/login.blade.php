@@ -9,7 +9,7 @@
         <div class="col-sm-6 offset-sm-3">
 
             {!! Form::open(['route' => 'login.post']) !!}
-            {{ csrf_field() }}
+           
                 <div class="form-group">
                     {!! Form::label('email', 'メールアドレス') !!}
                     {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}

@@ -1,6 +1,6 @@
 <header class="mb-4">
     <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #eee;">
-        <a class="navbar-brand" href="/">トップページ</a>
+        <a class="navbar-brand" href="/welcome">将棋</a>
         <ul class="navbar-nav mr-auto"></ul>
         <ul class="navbar-nav navbar-light">
             <li class="nav-item">{!! link_to_route('search', 'ユーザ検索',null, ['class' => 'navbar-brand']) !!}</li>
