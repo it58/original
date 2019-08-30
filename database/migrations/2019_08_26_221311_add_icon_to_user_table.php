@@ -14,7 +14,7 @@ class AddIconToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('icon',100);
+            $table->string('icon',100)->default('th_app_icon_account.jpg');
         });
     }
 
