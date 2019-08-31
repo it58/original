@@ -29,7 +29,7 @@
             @foreach($followers as $follower)
                 <h2 class="p-2 text-center border brown">フォロワー一覧</h2>
                 <li class="media">
-                        <img class="mr-2 rounded" src="{{ Storage::disk('s3')->url($user->icon) }}" alt="">
+                        <img class="mr-2 rounded" src="{{ Storage::disk('s3')->url($user->icon) }}" alt="" width=50px height=50px>
                         <div class="media-body">
                             <p>{!! link_to_route('users.show', $follower->name ,['id' => $follower->id]) !!}</p>
                         </div>
