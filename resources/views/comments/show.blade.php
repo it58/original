@@ -81,14 +81,15 @@
                                             <div class="inline">
                                                 {!! Form::open(['route' => ['reference.destroy',$comment->id],'method' => 'delete']) !!}
                                                     {!! Form::submit('参考になった', [
-                                                      'class' => 'btn btn-secondary',
+                                                      'class' => 'btn btn-secondary disabled',
                                                     ]) !!}
+
                                                 {!! Form::close() !!}
                                             </div>
                                             
                                         @endif
                                         <div class="inline">
-                                           <span class="balloon-left">{{ $comment->referencedUsers()->get()->count() }}</span>
+                                           <span class="badge badge-primary">{{ $comment->referencedUsers()->get()->count() }}</span>
                                         </div>
                                             
                                     

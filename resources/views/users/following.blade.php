@@ -27,9 +27,9 @@
         <div class="col-sm-8">
             <!--フォローしているユーザを一覧表示-->
             @foreach($followings as $following)
-                <h1>フォロー中のユーザ</h1>
+                <h2 class="p-2 text-center border brown">フォロー中のユーザ</h2>
                 <li class="media">
-                        <img class="mr-2 rounded" src="{{ Gravatar::src($following->email, 50) }}" alt="">
+                        <img class="mr-2 rounded" src="{{ Storage::disk('s3')->url($user->icon) }}" alt="" width=50px height=50px>
                         <div class="media-body">
                             <p>{!! link_to_route('users.show', $following->name ,['id' => $following->id]) !!}</p>
                         </div>

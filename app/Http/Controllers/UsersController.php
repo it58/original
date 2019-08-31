@@ -31,21 +31,24 @@ class UsersController extends Controller
     // ユーザ情報編集
     public function update(Request $request, $id)
     {
-        // ユーザアイコン登録
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|max:10240|mimes:jpeg,gif,png'
-        ]);
-        
-        if ($validator->fails())
-        {
-            return back()->withInput()->withErrors($validator);
-        }
-            
-        $file = $request->file('file');
-        $path = Storage::disk('s3')->putFile('/', $file, 'public');
-        
         $user = User::find($id);
-        $user->icon = $path;
+        if($request->file !=null){
+            // ユーザアイコン登録
+            $validator = Validator::make($request->all(), [
+                'file' => 'max:10240|mimes:jpeg,gif,png'
+            ]);
+            
+            if ($validator->fails())
+            {
+                return back()->withInput()->withErrors($validator);
+            }
+                
+            $file = $request->file('file');
+            $path = Storage::disk('s3')->putFile('/', $file, 'public');
+            $user->icon = $path;
+        }
+        
+        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->strength = $request->strength;

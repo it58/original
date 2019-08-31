@@ -31,13 +31,8 @@ class PostsController extends Controller
                 'image_title' => $request->comment
             ]);
        
-            return redirect()->back();
-        // } else {
-        //     return redirect()
-        //         ->back()
-        //         ->withInput()
-        //         ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
-        // }
+            return redirect('/users/'.auth()->id());
+      
     }
     
     public function destroy($id){
