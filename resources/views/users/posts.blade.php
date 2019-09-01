@@ -14,10 +14,20 @@
                 </div>
                 <div class="card-footer  m-0 p-0 pl-1">
                     @if (Auth::id() == $post->user_id)
-                        {!! Form::open(['route' => ['delete', $post->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('削除', ['class' => 'btn btn-danger card-text my-2']) !!}
+                        {!! Form::open(['route' => ['tag.index', $post->id], 'method' => 'get']) !!}
+                            {!! Form::submit('タグ', ['class' => 'btn btn-primary my-2']) !!}
                         {!! Form::close() !!}
                     @endif
+                        @foreach($post->tagsToImage()->orderBy('tag_id','asc')->get() as $tag)
+                            {{ $tag->tag }}
+                        @endforeach
+                    @if (Auth::id() == $post->user_id)
+                        {!! Form::open(['route' => ['delete', $post->id], 'method' => 'delete']) !!}
+                                {!! Form::submit('削除', ['class' => 'btn btn-danger my-2']) !!}
+                        {!! Form::close() !!}
+                        
+                    @endif
+                   
                 </div>
             </div>
             

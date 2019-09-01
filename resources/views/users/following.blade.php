@@ -26,8 +26,8 @@
         </aside>
         <div class="col-sm-8">
             <!--フォローしているユーザを一覧表示-->
+            <h2 class="p-2 text-center border brown">フォロー中のユーザ</h2>
             @foreach($followings as $following)
-                <h2 class="p-2 text-center border brown">フォロー中のユーザ</h2>
                 <li class="media">
                         <img class="mr-2 rounded" src="{{ Storage::disk('s3')->url($user->icon) }}" alt="" width=50px height=50px>
                         <div class="media-body">

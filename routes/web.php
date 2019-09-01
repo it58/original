@@ -63,6 +63,16 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('followings', 'UsersController@followings')->name('users.following');
         Route::get('followers', 'UsersController@followers')->name('users.follower');
     });
+    
+    // タグ機能(ログイン後)
+    Route::group(['prefix' => 'post/{id}'], function () {
+        //  post/id1/tag/id2 ならid1のpostにid2のタグをつける
+        Route::post('tag', 'TagsController@store')->name('tag.store');
+        Route::delete('untag', 'TagsController@destroy')->name('tag.delete');
+        Route::get('tags', 'TagsController@index')->name('tag.index');
+        Route::get('searchTag', 'TagsController@search')->name('tag.search');
+       
+    });
 });
 
 // 管理者機能

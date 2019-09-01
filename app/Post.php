@@ -19,4 +19,41 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    
+     // 写真につけるタグ一覧取得
+    public function tagsToImage()
+    {
+        return $this->belongsToMany(Tag::class,'posts_tags','post_id','tag_id');
+    }
+    
+    // 写真に対してタグをつける
+    public function tag($tagId)
+    {
+        // 既についているタグなら何もしない
+        if($this->is_tagging($tagId)){
+            return false;
+        }
+        else{
+        $this->tagsToImage()->attach($tagId);
+        return true;
+        }
+    }
+    
+    // 写真のタグをはずす
+    public function untag($tagId)
+    {
+        // まだついていないタグなら何もしない
+        if(!$this->is_tagging($tagId)){
+            return false;
+        }
+        else{
+        $this->tagsToImage()->detach($tagId);
+        return true;
+        }
+    }
+    
+    // 既にタグ付けしているか確認
+    public function is_tagging($tagId){
+        return $this->tagsToImage()->where('tag_id',$tagId)->exists();
+    }
 }

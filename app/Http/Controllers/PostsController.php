@@ -47,11 +47,10 @@ class PostsController extends Controller
     
     public function index(){
         $posts = \App\Post::orderBy('created_at','desc')->paginate(6);
-        $users = \App\User::orderBy('created_at','desc')->paginate(6);
+        
         
         $data = [
             'posts' => $posts,
-            'users' => $users
         ];
         
         return view('welcome',$data);
