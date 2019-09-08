@@ -41,6 +41,11 @@
                         
                 {!! Form::submit('変更', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
+            
+            
+            {!! Form::open(['route' => ['users.destroy',$user->id], 'method' => 'delete']) !!}
+                {!! Form::submit('退会する', ['class' => 'btn btn-danger btn-block my-2']) !!}
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

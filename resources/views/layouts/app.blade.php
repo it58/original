@@ -9,27 +9,44 @@
         
         <style>
             .back {
-                width:500px;
-                border: 1px solid #000;
-                padding: 1em;
-                text-align: center;
-                background-color: red;
+         
+                background-color: white;
             }
             
-            .back-ground{
-                back-ground-color:silver;
+            body{
+                height: 100%;
+                background-size: cover;
+                background: no-repeat;
+                background-image:url({{ Storage::disk('s3')->url('adpDSC_6814-1.jpg') }});
             }
+            
+            /*.bkRGBA{*/
+            /*   背景画像の透過用css */
+            /*  height: 100%;*/
+            /*  background: rgba(255,255,255,0.5);*/
+            /*}*/
+            /*.no-opacity{*/
+            /*position: absolute;*/
+            /*top:84px;*/
+            /*right: 0;*/
+            /*bottom: 0;*/
+            /*left: 0;*/
+            /*margin: auto;*/
+            
+            /*}*/
         </style>
     </head>
     <body>
+        
         @if(request()->path() != '/')
             @include('commons.navbar')
         @endif
-        
-        <div class="container">
-            @include('commons.error_messages')
-            
-            @yield('content')
+        <div class="bkRGBA no-opacity">
+            <div class="container">
+                @include('commons.error_messages')
+                
+                @yield('content')
+            </div>
         </div>
         
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
