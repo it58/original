@@ -15,17 +15,17 @@
                 <div class="card-footer  m-0 p-0 pl-1">
                     <span>タグ:</span>
                     @if (Auth::id() == $post->user_id)
+                        @foreach($post->tagsToImage()->orderBy('tag_id','asc')->get() as $tag)
+                            <span>{{ $tag->tag }}</span>
+                        @endforeach
                         <span>
                             {!! Form::open(['route' => ['tag.index', $post->id], 'method' => 'get']) !!}
                                 {!! Form::submit('編集', ['class' => 'btn btn-primary my-2']) !!}
                             {!! Form::close() !!}
-                        </span><br/>
+                        </span>
+                    
+                    
                     @endif
-                    
-                    @foreach($post->tagsToImage()->orderBy('tag_id','asc')->get() as $tag)
-                        <span>{{ $tag->tag }}</span>
-                    @endforeach
-                    
                         
                     @if (Auth::id() == $post->user_id)
                         {!! Form::open(['route' => ['delete', $post->id], 'method' => 'delete']) !!}

@@ -8,7 +8,8 @@
         {{Form::checkbox('tagId[]', $tag->id, null, ['class' => 'field'])}}
         {{ $tag->tag }}
     @endforeach
-     {!! Form::submit('解除', ['class' => 'btn btn-danger']) !!}
+    <br/>
+     {!! Form::submit('解除', ['class' => 'btn btn-danger m-1']) !!}
 {!! Form::close() !!}
 
 <h2>タグ一覧</h2>
@@ -17,7 +18,8 @@
         {{Form::checkbox('tagId[]', $tag->id, null, ['class' => 'field'])}}
         {{ $tag->tag }}
     @endforeach
-    {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
+    <br/>
+    {!! Form::submit('登録', ['class' => 'btn btn-primary m-1']) !!}
 {!! Form::close() !!}
 
 {!! link_to_route('users.show', '戻る',['id' => $post->user_id]) !!}
