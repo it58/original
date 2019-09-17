@@ -31,13 +31,8 @@ class PostsController extends Controller
                 'image_title' => $request->comment
             ]);
        
-            return redirect()->back();
-        // } else {
-        //     return redirect()
-        //         ->back()
-        //         ->withInput()
-        //         ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
-        // }
+            return redirect('/users/'.auth()->id());
+      
     }
     
     public function destroy($id){
@@ -52,11 +47,10 @@ class PostsController extends Controller
     
     public function index(){
         $posts = \App\Post::orderBy('created_at','desc')->paginate(6);
-        $users = \App\User::orderBy('created_at','desc')->paginate(6);
+        
         
         $data = [
             'posts' => $posts,
-            'users' => $users
         ];
         
         return view('welcome',$data);

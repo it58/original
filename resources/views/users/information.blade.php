@@ -4,7 +4,7 @@
     </div>
 @else
     <div>
-        <img class="rounded img-fluid" src= {{ Storage::disk('s3')->url('th_app_icon_account.jpg') }} alt="">
+        <img class="rounded img-fluid" src= {{ Storage::disk('s3')->url('images.png') }} alt="">
     </div>
 @endif
 
