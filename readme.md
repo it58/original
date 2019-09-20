@@ -56,3 +56,28 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## アプリケーションの概要
+どういう用途のサービスなのか一行で書く
+将棋ファンの交流を目的としたサービス
+
+## アプリケーションの機能一覧
+認証機能
+画像投稿機能
+投稿一覧機能
+画像へのコメント機能
+コメントに対する参考になった機能
+ユーザ検索機能
+画像へのタグ機能、タグを使用した検索機能
+管理者による投稿削除機能
+
+
+## アプリケーション内で使用している技術一覧
+インフラ、データベースは何を使っているのか
+セッション管理はどのように行っているのか　Cookie
+画像アップロードはどのライブラリを使っているのか
+デプロイはどの様に行っているのか
+
+仕様データベース：MYSQL
+画像アップロード：AmazonS3
+アプリケーションサーバ：Heroku
