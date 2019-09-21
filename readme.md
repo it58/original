@@ -1,5 +1,6 @@
 ## アプリケーションの概要
 将棋ファンの交流を目的としたサービス
+
 URL http://original-shogi.herokuapp.com/
 
 ## アプリケーションの機能一覧
