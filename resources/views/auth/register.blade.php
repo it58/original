@@ -34,7 +34,6 @@
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
 
-
                 {!! Form::submit('会員登録', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
         </div>

@@ -1,5 +1,7 @@
+<!--あるユーザの投稿一覧を表示-->
+
 <h1 class="border text-center p-2  brown">投稿一覧</h1>
-<!--ユーザ個人のpostsを表示-->
+
 <div class="container-fluid">
     <div class="row justify-content-start ">
         @foreach($posts as $post)
@@ -14,6 +16,7 @@
                 </div>
                 <div class="card-footer  m-0 p-0 pl-1">
                     <span>タグ:</span>
+                    <!--投稿写真がログイン者のものであれば、タグの編集が可能-->
                     @if (Auth::id() == $post->user_id)
                         @foreach($post->tagsToImage()->orderBy('tag_id','asc')->get() as $tag)
                             <span>{{ $tag->tag }}</span>
@@ -23,10 +26,8 @@
                                 {!! Form::submit('編集', ['class' => 'btn btn-primary my-2']) !!}
                             {!! Form::close() !!}
                         </span>
-                    
-                    
                     @endif
-                        
+                    <!--投稿写真がログイン者のものであれば、タグの削除が可能-->
                     @if (Auth::id() == $post->user_id)
                         {!! Form::open(['route' => ['delete', $post->id], 'method' => 'delete']) !!}
                                 {!! Form::submit('削除', ['class' => 'btn btn-danger my-2']) !!}

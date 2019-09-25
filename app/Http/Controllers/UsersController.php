@@ -28,6 +28,7 @@ class UsersController extends Controller
             'user' => $user
         ]);
     }
+    
     // ユーザ情報編集
     public function update(Request $request, $id)
     {
@@ -48,7 +49,6 @@ class UsersController extends Controller
             $user->icon = $path;
         }
         
-        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->strength = $request->strength;
@@ -61,12 +61,11 @@ class UsersController extends Controller
     
     public function destroy($id){
         $user = User::find($id);
+        
         if(\Auth::id() == $user->id){
             $user->delete();
         }
         
          return redirect('/');
     }
-    
-    
 }

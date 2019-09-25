@@ -29,7 +29,7 @@ class FollowController extends Controller
         return view('users.following',[
             'user' => $user,
             'followings' => $followings
-            ]);
+        ]);
             
     }
     
@@ -40,7 +40,7 @@ class FollowController extends Controller
         return view('users.follower',[
             'user' => $user,
             'followers' => $followers
-            ]);
+        ]);
             
     }
 }

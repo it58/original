@@ -13,11 +13,10 @@ class Controller extends BaseController
     
     public function counts($comment){
         $referencedUsersCount = $comment->referencedUsers()->count();
-        // dd($referencedUsers);
         
         return [
             'referencedUsersCount' => $referencedUsersCount
-            ];
+        ];
          
     }
 }

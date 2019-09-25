@@ -12,27 +12,25 @@ class PostsController extends Controller
 {
      public function upload(Request $request){
         
-            $validator = Validator::make($request->all(), [
-                'file' => 'required|max:10240|mimes:jpeg,gif,png',
-                'comment' => 'required|max:191',
-            ]);
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|max:10240|mimes:jpeg,gif,png',
+            'comment' => 'required|max:191'
+        ]);
+        
+        if ($validator->fails()){
+            return back()->withInput()->withErrors($validator);
+        }
             
-            if ($validator->fails())
-                {
-                    return back()->withInput()->withErrors($validator);
-                }
-                
-            $file = $request->file('file');
-            $path = Storage::disk('s3')->putFile('/', $file, 'public');
-    
-            Post::create([
-                'image_file_name' => $path,
-                'user_id' => auth()->id(),
-                'image_title' => $request->comment
-            ]);
-       
-            return redirect('/users/'.auth()->id());
-      
+        $file = $request->file('file');
+        $path = Storage::disk('s3')->putFile('/', $file, 'public');
+
+        Post::create([
+            'image_file_name' => $path,
+            'user_id' => auth()->id(),
+            'image_title' => $request->comment
+        ]);
+   
+        return redirect('/users/'.auth()->id());
     }
     
     public function destroy($id){
@@ -47,8 +45,7 @@ class PostsController extends Controller
     
     public function index(){
         $posts = \App\Post::orderBy('created_at','desc')->paginate(6);
-        
-        
+    
         $data = [
             'posts' => $posts,
         ];

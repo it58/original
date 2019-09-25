@@ -15,7 +15,7 @@ class UsersController extends Controller
         
         return view ('admin.show',[
             'user' => $user,
-            'posts' => $posts,
+            'posts' => $posts
         ]);
     }
 }

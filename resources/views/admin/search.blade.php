@@ -49,6 +49,7 @@
                 <!--検索ボタンが押された時に実行-->
                 @if(!empty($data))
                     @foreach($data as $item)
+                    　　<!--ゲスト以外のユーザを一覧表示-->
                         @if($item->name != 'guest')
                             <div class="row py-2 border-bottom text-center">
                                 <div class="col-sm-4">

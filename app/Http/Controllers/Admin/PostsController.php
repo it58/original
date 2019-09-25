@@ -16,7 +16,6 @@ class PostsController extends Controller
         $post = \App\Post::find($id);
         $post->delete();
         
-        
         return redirect()->back();
     }
     

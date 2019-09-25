@@ -13,6 +13,7 @@
             </div>
             
             <div>
+            <!--画像およびタイトル投稿-->
             @if(Auth::id() == $user->id )
                 {!! Form::open(['route' => 'upload', 'method' => 'post','files' => true]) !!}
                     <div class="form-group">
@@ -31,14 +32,12 @@
             </div>
         </aside>
       
-        
         <div class="col-sm-8">
             <h1 class="border text-center p-2">投稿一覧</h1>
             <!--ユーザ個人のpostsを表示-->
             <div class="container-fluid">
-                <div class="row justify-content-between ">
+                <div class="row justify-content-between">
                     @foreach($posts as $post)
-                        
                         <!--image_file_nameカラムに保存されている画像のパスを用いて画像を一覧表示-->
                         <div class="col-sm-4">
                             <div class="card-header">
@@ -46,14 +45,11 @@
                             </div>
                             <div class="card-body text-left px-0">
                                 <p class="card-title">{{ $post->image_title }}</p>
-                                
-                                    {!! Form::open(['route' => ['admin.delete', $post->id], 'method' => 'delete']) !!}
-                                        {!! Form::submit('削除', ['class' => 'btn btn-danger card-text']) !!}
-                                    {!! Form::close() !!}
-                              
+                                {!! Form::open(['route' => ['admin.delete', $post->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('削除', ['class' => 'btn btn-danger card-text']) !!}
+                                {!! Form::close() !!}
                             </div>
                         </div>
-                        
                     @endforeach
                 </div>
             </div>
