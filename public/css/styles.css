@@ -1,7 +1,10 @@
 @charset "utf-8";
 
 
-
+body{
+  margin: 0;
+  font-size:20px;
+}
 .brown{
     background-color:#ddd;
     border:1px;

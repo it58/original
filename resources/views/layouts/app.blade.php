@@ -14,10 +14,11 @@
             }
             
             body{
-                height: 100%;
+                background-image:url({{ Storage::disk('s3')->url('adpDSC_6814-1-750x499.png') }});
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
                 background-size: cover;
-                background: no-repeat;
-                background-image:url({{ Storage::disk('s3')->url('adpDSC_6814-1.jpg') }});
             }
             
             /*.bkRGBA{*/
@@ -41,7 +42,7 @@
         @if(request()->path() != '/')
             @include('commons.navbar')
         @endif
-        <div class="bkRGBA no-opacity">
+        <div>
             <div class="container">
                 @include('commons.error_messages')
                 

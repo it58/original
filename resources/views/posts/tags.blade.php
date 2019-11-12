@@ -8,7 +8,6 @@
         <div class="col-lg-6">
             <h2>登録中のタグ一覧</h2>
             {!! Form::open(['route' => ['tag.delete', $post->id], 'method' => 'delete']) !!}
-                
                     @foreach($post->tagsToImage()->orderBy('tag_id','asc')->get() as $tag)
                         <li class="list-unstyled">
                             {!! Form::label('$tag->tag', $tag->tag ) !!}
