@@ -27,7 +27,7 @@
             
             <!--コメント一覧表示-->
             <div class="col-lg-6 center">
-                <h3 class="border text-center p-2 brown">コメント一覧</h3>
+                <h3 class="border text-center p-2 titleBackColor">コメント一覧</h3>
                 
                 <!--並び替えプルダウンメニュー-->
                 <select onChange="location.href=value;">

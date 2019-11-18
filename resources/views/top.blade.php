@@ -18,6 +18,8 @@
                                 <input type="hidden" name="password" value="123456">
                                 <button type="submit" class="btn btn-sm btn-primary m-1">テストユーザーでログイン</button>
                             </form>
+                        @else
+                            {!! link_to_route('logout.get', 'ログアウト', [], ['class' => 'btn btn-sm btn-danger m-1']) !!}
                         @endif
                     </div>
                 </div>

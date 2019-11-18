@@ -27,24 +27,26 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-// コメント機能
-Route::resource('comments','CommentsController', ['only' => ['show','destroy']]);
-Route::post('comments/{id}','CommentsController@store')->name('store');
-Route::get('show.reference/{id}','CommentsController@show_reference')->name('show.reference');
-
-//ユーザ詳細表示機能
-Route::get('users/{id}','UsersController@show')->name('users.show');
-// Route::post('icon.upload/{id}', 'UsersController@upload')->name('icon.upload');
-
-// ユーザ検索機能
-Route::get('Search','SearchController@index')->name('search');
-// Route::post('Search','SearchController@index')->name('search.post');
-
-// タグ検索機能
-Route::get('post/{id}/searchTag', 'TagsController@search')->name('tag.search');
 
 // ログイン後機能
 Route::group(['middleware' => ['auth']], function (){
+    
+    // コメント機能
+    Route::resource('comments','CommentsController', ['only' => ['show','destroy']]);
+    Route::post('comments/{id}','CommentsController@store')->name('store');
+    Route::get('show.reference/{id}','CommentsController@show_reference')->name('show.reference');
+    
+    //ユーザ詳細表示機能
+    Route::get('users/{id}','UsersController@show')->name('users.show');
+    // Route::post('icon.upload/{id}', 'UsersController@upload')->name('icon.upload');
+    
+    // ユーザ検索機能
+    Route::get('Search','SearchController@index')->name('search');
+    // Route::post('Search','SearchController@index')->name('search.post');
+    
+    // タグ検索機能
+    Route::get('post/{id}/searchTag', 'TagsController@search')->name('tag.search');
+
     
     //ユーザ情報編集機能(ログイン後)
     Route::resource('users','UsersController', ['only' => ['update','edit','destroy']]);
