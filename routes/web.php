@@ -15,9 +15,6 @@ Route::get('/', function(){
     return view('top');
 });
 
-Route::get('welcome', 'PostsController@index')->name('welcome');
-
-
 // ユーザ登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
@@ -30,6 +27,8 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 // ログイン後機能
 Route::group(['middleware' => ['auth']], function (){
+    //トップページ
+    Route::get('welcome', 'PostsController@index')->name('welcome');
     
     // コメント機能
     Route::resource('comments','CommentsController', ['only' => ['show','destroy']]);
