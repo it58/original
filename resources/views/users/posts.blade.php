@@ -1,6 +1,6 @@
 <!--あるユーザの投稿一覧を表示-->
 
-<h1 class="border text-center p-2  brown">投稿一覧</h1>
+<h1 class="border text-center p-2  titleBackColor">投稿一覧</h1>
 
 <div class="container-fluid">
     <div class="row justify-content-start ">

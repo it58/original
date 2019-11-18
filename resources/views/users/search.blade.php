@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="text-center my-4">
-                <h3 class="brown border p-2">ユーザ検索</h3>
+                <h3 class="titleBackColor border p-2">ユーザ検索</h3>
             </div>
             {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
                 <div class="form-group">
@@ -25,7 +25,7 @@
         </div>
         <div class="col-sm-8">
             <div class="text-center my-4">
-                <h3 class="brown p-2">ユーザ一覧</h3>
+                <h3 class="titleBackColor p-2">ユーザ一覧</h3>
             </div>
             
             <div class="container">

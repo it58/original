@@ -21,20 +21,6 @@
                 background-size: cover;
             }
             
-            /*.bkRGBA{*/
-            /*   背景画像の透過用css */
-            /*  height: 100%;*/
-            /*  background: rgba(255,255,255,0.5);*/
-            /*}*/
-            /*.no-opacity{*/
-            /*position: absolute;*/
-            /*top:84px;*/
-            /*right: 0;*/
-            /*bottom: 0;*/
-            /*left: 0;*/
-            /*margin: auto;*/
-            
-            /*}*/
         </style>
     </head>
     <body>
@@ -42,13 +28,13 @@
         @if(request()->path() != '/')
             @include('commons.navbar')
         @endif
-        <div>
+        
             <div class="container">
                 @include('commons.error_messages')
                 
                 @yield('content')
             </div>
-        </div>
+       
         
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>

@@ -16,8 +16,8 @@
     <p class="border mt-4">棋力：{{ $user->strength }}</p>
     <p class="border mt-4">好きな戦法：{{ $user->tactics }}</p>
 </div>
-<!--ログイン者自身の情報のみ編集が可能-->
-@if( Auth::id() == $user->id)
+<!--ログイン者自身のみ編集が可能 テストユーザーは編集不可能-->
+@if( Auth::id() == $user->id && $user->email !== 'test@gmail.com')
     {!! Form::open(['route' => ['users.edit',$user->id], 'method' => 'get']) !!}
         {!! Form::submit('ユーザ情報編集', ['class' => 'btn btn-secondary my-2']) !!}
     {!! Form::close() !!}

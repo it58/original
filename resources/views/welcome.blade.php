@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <aside class="col-sm-2">
-            <h6 class="p-2 text-center border brown" >タグ一覧</h6>
+            <h6 class="p-2 text-center border titleBackColor" >タグ一覧</h6>
             @foreach(App\Tag::all() as $tag)
                 <span><a href="{{ route('tag.search',['id' => $tag->id] ) }}">{{ $tag->tag }}</a></span>
                 <span class="badge badge-primary">{{ $tag->taggedImages()->get()->count() }}</span><br/>
@@ -12,7 +12,7 @@
         </aside>    
         <div class="col-sm-10">
             
-            <h2 class="p-2 text-center border brown">最近の投稿</h2>
+            <h2 class="p-2 text-center border titleBackColor">最近の投稿</h2>
             <!--全ユーザの投稿を表示-->
             <div class="container-fluid m-0">
                 <div class="row justify-content-start">
